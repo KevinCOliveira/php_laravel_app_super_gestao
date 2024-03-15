@@ -70,12 +70,49 @@
 @endphp
 
 @isset($fornecedores)
-    Fornecedor: {{$fornecedores[1] ['nome']}}
-    <br>
-    Status: {{$fornecedores[1] ['status']}}
-    <br>
-    Cnpj: {{$fornecedores[1] ['cnpj'] ?? 'Dado não foi preenchido'}}
-    {{-- se a variavel testada não estiver definida 
-        ou
-        $variavel testada possuir o valor null --}}
+    @forelse($fornecedores as $indice => $fornecedor)
+        Iteração atual: {{ $loop->iteration }}
+        <br>
+        Fornecedor: {{$fornecedor['nome']}}
+        <br>
+        Status: {{$fornecedor['status']}}
+        <br>
+        Cnpj: {{$fornecedor['cnpj'] ?? 'Dado não foi preenchido'}}
+        {{-- se a variavel testada não estiver definida 
+            ou
+            $variavel testada possuir o valor null --}}
+        <br>
+        Telefone: ({{$fornecedor['ddd'] ?? ''}}) {{$fornecedor['telefone'] ?? ''}}
+        @switch($fornecedor['ddd'])
+            @case('11')
+                São Paulo - SP
+                @break
+            @case('32')
+                Juiz de Fora - MG            
+                @break
+            @case('85')
+                Fortaleza - CE 
+                @break    
+            @default
+                Estado não identificado
+        @endswitch
+        <br>
+        @if ($loop->first)
+            primeira iteração do Loop
+        @endif
+        @if ($loop->last)
+            ultima iteração do Loop
+            <br>
+            Total de registros: {{$loop->count}}
+        @endif
+        <br>
+        <hr>
+        @empty
+            Não existem fornecedores cadastrados!!!
+    @endforelse
 @endisset
+
+<br>
+@for($i = 0; $i <10; $i++)
+        {{$i}} <br>
+@endfor
