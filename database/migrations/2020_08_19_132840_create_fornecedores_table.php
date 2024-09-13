@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AlterFornecedoresSoftdelete extends Migration
+class CreateFornecedoresTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class AlterFornecedoresSoftdelete extends Migration
      */
     public function up()
     {
-        Schema::table('fornecedores', function (Blueprint $table) {
-            $table->softDeletes();
+        Schema::create('fornecedores', function (Blueprint $table) {
+            $table->id();
+            $table->string('nome', 50);
+            $table->timestamps();
+            //$table->softDeletes();
         });
     }
 
@@ -25,9 +28,7 @@ class AlterFornecedoresSoftdelete extends Migration
      */
     public function down()
     {
-        Schema::table('fornecedores', function (Blueprint $table) {
-            //para remover colunas
-            $table->dropSoftDeletes();
-        });
+        Schema::dropIfExists('fornecedores');
+        //Schema::drop('fornecedores');
     }
 }

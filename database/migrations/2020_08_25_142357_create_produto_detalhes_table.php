@@ -22,7 +22,7 @@ class CreateProdutoDetalhesTable extends Migration
             $table->float('altura', 8, 2);
             $table->timestamps();
 
-            //constraint 
+            //constraint
             $table->foreign('produto_id')->references('id')->on('produtos');
             $table->unique('produto_id');
         });

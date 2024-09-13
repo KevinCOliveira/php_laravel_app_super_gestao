@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AlterFornecedoresEmail extends Migration
+class AlterFornecedoresSoftdelete extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class AlterFornecedoresEmail extends Migration
      */
     public function up()
     {
-        Schema::table('fornecedores',function(Blueprint $table){
-            $table->dropColumn('e-mail');
-            $table->string('email',150)->after('uf');
+        //
+        Schema::table('fornecedores', function (Blueprint $table) {
+            $table->softDeletes();
         });
     }
 
@@ -26,9 +26,8 @@ class AlterFornecedoresEmail extends Migration
      */
     public function down()
     {
-        Schema::table('fornecedores',function(Blueprint $table){
-            $table->string('e-mail',150)->after('uf');
-            $table->dropColumn('email');
+        Schema::table('fornecedores', function (Blueprint $table) {
+            $table->dropSoftDeletes();
         });
     }
 }

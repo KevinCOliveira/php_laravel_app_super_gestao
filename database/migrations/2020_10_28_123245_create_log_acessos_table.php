@@ -3,9 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\MotivoContato;
 
-class CreateMotivoContatosTable extends Migration
+class CreateLogAcessosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,15 +13,11 @@ class CreateMotivoContatosTable extends Migration
      */
     public function up()
     {
-        Schema::create('motivo_contatos', function (Blueprint $table) {
+        Schema::create('log_acessos', function (Blueprint $table) {
             $table->id();
-            $table->string('motivo_contatos', 20);
+            $table->string('log', 200);
             $table->timestamps();
         });
-
-        // MotivoContato::create(['Dúvida']);
-        // MotivoContato::create(['Elogio']);
-        // MotivoContato::create(['Reclamação']);
     }
 
     /**
@@ -32,6 +27,6 @@ class CreateMotivoContatosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('motivo_contatos');
+        Schema::dropIfExists('log_acessos');
     }
 }
