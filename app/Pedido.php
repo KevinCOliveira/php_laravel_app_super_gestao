@@ -8,7 +8,7 @@ class Pedido extends Model
 {
     public function produtos(){
         //return $this->belongsToMany('App\Produto', 'pedidos_produtos');
-        return $this->belongsToMany('App\Item', 'pedidos_produtos','pedido_id','produto_id');
+        return $this->belongsToMany('App\Item', 'pedidos_produtos','pedido_id','produto_id')->withPivot('created_at','id');
         /*
         1- Modelo de relacionamento NxN em relação ao modelo que estamos implementando
         2- É a tabela auxiliar que armazena os registros relacionados 
